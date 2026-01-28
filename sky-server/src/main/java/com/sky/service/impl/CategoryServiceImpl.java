@@ -14,6 +14,7 @@ import com.sky.service.CategoryService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,7 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         List<Category> categoryList = categoryMapper.pageQuery(categoryPageQueryDTO.getName(), categoryPageQueryDTO.getType());
 
-        Page<Category> p=(Page)categoryList;
+        Page<Category> p=(Page<Category>)categoryList;
         return new PageResult(p.getTotal(), p.getResult());
     }
 
@@ -75,6 +76,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         Integer count = dishMapper.countByCategoryId(id);
         if(count > 0) {

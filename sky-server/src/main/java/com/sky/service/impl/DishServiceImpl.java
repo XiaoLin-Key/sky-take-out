@@ -25,6 +25,7 @@ public class DishServiceImpl implements DishService {
     private DishMapper dishMapper;
     @Autowired
     private DishFlavorMapper dishFlavorMapper;
+    @Override
     @Transactional
     public void saveWithFlavor(DishDTO dishDTO) {
         // 新增菜品
@@ -45,11 +46,12 @@ public class DishServiceImpl implements DishService {
     public PageResult pageQuery(DishPageQueryDTO dishPageQueryDTO) {
         PageHelper.startPage(dishPageQueryDTO.getPage(), dishPageQueryDTO.getPageSize());
         List<DishVO> dishList = dishMapper.pageQuery(dishPageQueryDTO);
-        Page<DishVO> p=(Page)dishList;
+        Page<DishVO> p=(Page<DishVO>)dishList;
         return new PageResult(p.getTotal(), p.getResult());
     }
 
     @Override
+    @Transactional
     public void deleteBatch(List<Long> ids) {
         ids.forEach(id -> {
             dishMapper.deleteById(id);

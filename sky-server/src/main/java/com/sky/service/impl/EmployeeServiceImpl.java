@@ -95,7 +95,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> employeeList = employeeMapper.pageQuery(employeePageQueryDTO.getName());
 
         //使用Page对结果进行包装
-        Page<Employee> p=(Page)employeeList;
+        Page<Employee> p=(Page<Employee>)employeeList;
 
         return new PageResult(p.getTotal(), p.getResult());
 
