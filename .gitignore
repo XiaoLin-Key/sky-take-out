@@ -4,3 +4,6 @@
 *.class
 *Test.java
 **/test/
+
+# 新增这一行（忽略所有名为 application-dev.yml 的文件）
+**/application-dev.yml
