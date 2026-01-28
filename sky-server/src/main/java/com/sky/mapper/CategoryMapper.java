@@ -1,6 +1,8 @@
 package com.sky.mapper;
 
+import com.sky.annotation.AutoFill;
 import com.sky.entity.Category;
+import com.sky.enumeration.OperationType;
 import com.sky.result.PageResult;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -16,6 +18,7 @@ public interface CategoryMapper {
      * @param category
      * @return
      */
+    @AutoFill(OperationType.UPDATE)
     void update(Category category);
 
     /**
@@ -29,6 +32,7 @@ public interface CategoryMapper {
      * 新增分类
      * @param category
      */
+    @AutoFill(OperationType.INSERT)
     @Insert("insert into category (id,type, name, sort, create_time, status, create_user,update_time, update_user) " +
             "values (#{id}, #{type}, #{name}, #{sort}, #{createTime}, #{status}, #{createUser}, #{updateTime}, #{updateUser})")
     void insert(Category category);
