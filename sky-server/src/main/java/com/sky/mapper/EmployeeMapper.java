@@ -29,7 +29,19 @@ public interface EmployeeMapper {
      * @param name
      * @return
      */
-    List<Employee> page(String name);
-
     List<Employee> pageQuery(String name);
+
+    /**
+     * 根据id查询员工
+     * @param id
+     * @return
+     */
+    @Select("select * from employee where id = #{id}")
+    Employee getById(Long id);
+
+    /**
+     * 更新员工信息
+     * @param employee
+     */
+    void update(Employee employee);
 }
