@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @RestController("userDishController")
 @RequestMapping("/user/dish")
-@Api(tags = "菜品相关接口")
+@Api(tags = "用户端菜品相关接口")
 public class DishController {
     @Autowired
     private DishService dishService;

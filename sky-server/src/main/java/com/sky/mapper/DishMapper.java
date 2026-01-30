@@ -44,7 +44,7 @@ public interface DishMapper {
      * @param id
      * @return
      */
-    DishVO getById(Long id);
+    Dish getById(Long id);
     /**
      * 更新菜品
      * @param dish
