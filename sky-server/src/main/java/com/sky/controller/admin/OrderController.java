@@ -67,7 +67,7 @@ public class OrderController {
      * @param ordersConfirmDTO
      * @return
      */
-    @PostMapping("/confirm")
+    @PutMapping("/confirm")
     @ApiOperation("接单")
     public Result confirm(@RequestBody OrdersConfirmDTO ordersConfirmDTO) {
         orderService.confirm(ordersConfirmDTO);
@@ -79,7 +79,7 @@ public class OrderController {
      * @param ordersRejectionDTO
      * @return
      */
-    @PostMapping("/reject")
+    @PutMapping("/rejection")
     @ApiOperation("拒单")
     public Result reject(@RequestBody OrdersRejectionDTO ordersRejectionDTO) {
         orderService.reject(ordersRejectionDTO);
@@ -103,7 +103,7 @@ public class OrderController {
      * @param id
      * @return
      */
-    @PutMapping("/deliver/{id}")
+    @PutMapping("/delivery/{id}")
     @ApiOperation("派送订单")
     public Result deliver(@PathVariable Long id) {
         orderService.deliver(id);

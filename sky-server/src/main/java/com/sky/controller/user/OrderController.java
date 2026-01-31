@@ -46,7 +46,7 @@ public class OrderController {
      * @param ordersPaymentDTO
      * @return
      */
-    @PutMapping("/payment")
+    @GetMapping("/payment")
     @ApiOperation("订单支付")
     public Result<OrderPaymentVO> payment(@RequestBody OrdersPaymentDTO ordersPaymentDTO) throws Exception {
         log.info("订单支付：{}", ordersPaymentDTO);
@@ -58,11 +58,15 @@ public class OrderController {
     /**
      * 历史订单查询
      */
-    @GetMapping("/history")
+    @GetMapping("/historyOrders")
     @ApiOperation("历史订单查询")
-    public Result<PageResult> history(int pageNum, int pageSize, int status) {
+    public Result<PageResult> page(
+            @RequestParam(defaultValue = "1") int pageNum,
+            @RequestParam(defaultValue = "10") int pageSize,
+            Integer status
+    ) {
         log.info("历史订单查询");
-        PageResult pageResult = orderService.history(pageNum, pageSize, status);
+        PageResult pageResult = orderService.historyOrders(pageNum, pageSize, status);
         return Result.success(pageResult);
     }
     /**
@@ -98,6 +102,18 @@ public class OrderController {
     @ApiOperation("再来一单")
     public Result repetition(@PathVariable Long id) {
         orderService.repetition(id);
+        return Result.success();
+    }
+    /**
+     * 用户催单
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/reminder/{id}")
+    @ApiOperation("用户催单")
+    public Result reminder(@PathVariable("id") Long id) {
+        orderService.reminder(id);
         return Result.success();
     }
 }

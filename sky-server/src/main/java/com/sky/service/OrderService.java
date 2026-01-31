@@ -30,7 +30,7 @@ public interface OrderService {
      * @param status
      * @return
      */
-    PageResult history(int pageNum, int pageSize, int status);
+    PageResult historyOrders(int pageNum, int pageSize, Integer status);
 
     OrderVO details(Long id);
 
@@ -51,4 +51,6 @@ public interface OrderService {
     void deliver(Long id);
 
     void complete(Long id);
+
+    void reminder(Long id);
 }
